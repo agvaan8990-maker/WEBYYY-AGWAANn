@@ -1,0 +1,144 @@
+{
+  "emojiQuestions": [
+    {
+      "id": 1,
+      "emojis": "🏴‍☠️🍖👒",
+      "answer": "One Piece",
+      "options": ["One Piece", "Naruto", "Bleach", "Dragon Ball"],
+      "mnHint": "Агвааны хамгийн дуртай далайн дээрэмчинтэй аниме!",
+      "enHint": "Agvaan's absolute favorite anime about pirates and a straw hat!",
+      "image": "/src/assets/images/one_piece_art_1782882096753.jpg"
+    },
+    {
+      "id": 2,
+      "emojis": "🦊🟠🍜🥷",
+      "answer": "Naruto",
+      "options": ["Naruto", "One Piece", "Bleach", "My Hero Academia"],
+      "mnHint": "Навчин тосгоны хошин бөгөөд хүчирхэг нинжа.",
+      "enHint": "The orange-clad ninja who dreams of becoming Hokage.",
+      "image": "/src/assets/images/naruto_art_1782882109211.jpg"
+    },
+    {
+      "id": 3,
+      "emojis": "👹🗡️🌊🪵",
+      "answer": "Demon Slayer",
+      "options": ["Attack on Titan", "Demon Slayer", "Jujutsu Kaisen", "Sword Art Online"],
+      "mnHint": "Танжиро болон түүний хулсан хаалттай дүү Нэзүко.",
+      "enHint": "Tanjiro fights demons to save his sister Nezuko.",
+      "image": "/src/assets/images/demon_slayer_art_1782882122347.jpg"
+    },
+    {
+      "id": 4,
+      "emojis": "🐲⚾💥🥋",
+      "answer": "Dragon Ball",
+      "options": ["Hunter x Hunter", "One Punch Man", "Dragon Ball", "Naruto"],
+      "mnHint": "Сон Гокү бөмбөлөгүүдийг цуглуулж хүслээ гуйна.",
+      "enHint": "Goku searches for magical spheres that summon a dragon.",
+      "image": "/src/assets/images/dragon_ball_art_1782882134720.jpg"
+    },
+    {
+      "id": 5,
+      "emojis": "📓🖊️💀🍎",
+      "answer": "Death Note",
+      "options": ["Death Note", "Tokyo Ghoul", "Bleach", "Code Geass"],
+      "mnHint": "Алим идэх дуртай Рюүк болон ухаант Лайт.",
+      "enHint": "A notebook that can decide the fate of humans with a pen.",
+      "image": "/src/assets/images/death_note_art_1782882147676.jpg"
+    },
+    {
+      "id": 6,
+      "emojis": "🧱👣⚔️🩸",
+      "answer": "Attack on Titan",
+      "options": ["Attack on Titan", "Kabaneri", "Vinland Saga", "Berserk"],
+      "mnHint": "Хүмүүсийг хамгаалдаг асар том хана болон аварга биетүүд.",
+      "enHint": "High stone walls, giant Titans, and soldiers flying using ODM gear.",
+      "image": "/src/assets/images/attack_on_titan_art_1782883621801.jpg"
+    },
+    {
+      "id": 7,
+      "emojis": "👁️🤞🏫💀",
+      "answer": "Jujutsu Kaisen",
+      "options": ["Jujutsu Kaisen", "Chainsaw Man", "Bleach", "Tokyo Ghoul"],
+      "mnHint": "Хараалын сургууль, Гожо багш болон Сукунагийн хуруу.",
+      "enHint": "Cursed energy, Satoru Gojo's beautiful eyes, and Ryomen Sukuna's fingers.",
+      "image": "/src/assets/images/jujutsu_kaisen_art_1782883637343.jpg"
+    },
+    {
+      "id": 8,
+      "emojis": "🎣⚡🛹👹",
+      "answer": "Hunter x Hunter",
+      "options": ["Hunter x Hunter", "Yu Yu Hakusho", "Fullmetal Alchemist", "Fairy Tail"],
+      "mnHint": "Гон загасны уургаар, Киллуа цахилгаанаар тулалддаг аялал.",
+      "enHint": "Gon with a fishing rod and Killua with yoyos/lightning exploring a dangerous world.",
+      "image": "/src/assets/images/hunter_x_hunter_art_1782883648174.jpg"
+    },
+    {
+      "id": 9,
+      "emojis": "🦸‍♂️🥦⚡🏫",
+      "answer": "My Hero Academia",
+      "options": ["My Hero Academia", "One Punch Man", "Mob Psycho 100", "Black Clover"],
+      "mnHint": "Баатруудын сургууль болон супер хүчгүй байсан ч шилдэг нь болсон Брокколи хүү!",
+      "enHint": "UA High School where teenagers learn to control their quirks to fight villains.",
+      "image": "/src/assets/images/my_hero_academia_art_1782883659223.jpg"
+    },
+    {
+      "id": 10,
+      "emojis": "🦾⚙️🐕🧪",
+      "answer": "Fullmetal Alchemist",
+      "options": ["Fullmetal Alchemist", "Steins;Gate", "D.Gray-man", "Soul Eater"],
+      "mnHint": "Төмөр гар, алхимийн ухаан, ах дүү Элрик нарын адал явдал.",
+      "enHint": "Equivalent exchange, automail arm, and two brothers seeking the Philosopher's Stone.",
+      "image": "/src/assets/images/fullmetal_alchemist_art_1782883670526.jpg"
+    }
+  ],
+  "characterQuestions": [
+    {
+      "id": 101,
+      "answer": "Luffy",
+      "options": ["Luffy", "Zoro", "Naruto", "Goku"],
+      "mnHint": "Дэрсэн малгайт далайн дээрэмчдийн ахмад, биеэ сунгаж сунадаг.",
+      "enHint": "The Straw Hat captain who wants to become the Pirate King.",
+      "image": "/src/assets/images/luffy_character_1783056314747.jpg"
+    },
+    {
+      "id": 102,
+      "answer": "Naruto",
+      "options": ["Naruto", "Sasuke", "Kakashi", "Boruto"],
+      "mnHint": "Навчин тосгоны Хокагэ болох мөрөөдөлтэй, усан улбар шар хувцастай нинжа.",
+      "enHint": "An orange-clad ninja of the Leaf Village who harbors the Nine-Tailed Fox.",
+      "image": "/src/assets/images/naruto_character_1783056326632.jpg"
+    },
+    {
+      "id": 103,
+      "answer": "Tanjiro",
+      "options": ["Tanjiro", "Zenitsu", "Inosuke", "Giyu"],
+      "mnHint": "Хамар дээрээ сорвитой, усан ба галын амьсгалтай чөтгөрийн ангууч ах.",
+      "enHint": "The kind Slayer who hunts demons and protects his sister Nezuko.",
+      "image": "/src/assets/images/tanjiro_character_1783056338779.jpg"
+    },
+    {
+      "id": 104,
+      "answer": "Goku",
+      "options": ["Goku", "Vegeta", "Gohan", "Frieza"],
+      "mnHint": "Сайян угсааны, дэлхийг олон удаа аварсан хамгийн хүчирхэг дайчин.",
+      "enHint": "The legendary Saiyan hero who loves fighting strong opponents.",
+      "image": "/src/assets/images/goku_character_1783056350069.jpg"
+    },
+    {
+      "id": 105,
+      "answer": "Gojo",
+      "options": ["Gojo", "Itadori", "Megumi", "Sukuna"],
+      "mnHint": "Цэнхэр нүдтэй, нүдний боолттой хамгийн хүчирхэг хараал хамгаалагч багш.",
+      "enHint": "The strongest sorcerer with blue eyes and an infamous blindfold.",
+      "image": "/src/assets/images/gojo_character_1783056409177.jpg"
+    },
+    {
+      "id": 106,
+      "answer": "Eren",
+      "options": ["Eren", "Armin", "Mikasa", "Levi"],
+      "mnHint": "Эрх чөлөөний төлөө тэмцэгч, Атаклагч титаныг эзэмшигч.",
+      "enHint": "The protagonist who swore to destroy all Titans and seek true freedom.",
+      "image": "/src/assets/images/eren_character_1783056420741.jpg"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Agvaan's Cyber Station",
+  "description": "An interactive, space-themed gaming dashboard and personal portfolio for Agvaan, featuring retro-synth sounds, an game aim-trainer, interactive shooting hoops, and customizable stage concerts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
