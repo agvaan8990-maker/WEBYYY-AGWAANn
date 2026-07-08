@@ -51,7 +51,7 @@ export function SpaceCinema({ lang, soundEnabled }: SpaceCinemaProps) {
     if (!autoLoadAttempted) {
       setAutoLoadAttempted(true);
       // We look for the file in the designated assets path
-      const defaultPath = "/src/assets/images/City_Leaves_the_Floor (1).mp4";
+      const defaultPath = "/assets/images/City_Leaves_the_Floor (1).mp4";
       
       // Test if defaultPath can be resolved (will fail on 404 in preview if missing, but we handle error gracefully)
       const testVideo = document.createElement("video");

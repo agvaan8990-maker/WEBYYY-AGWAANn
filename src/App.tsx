@@ -74,11 +74,11 @@ const THEMES: Record<ThemeName, ThemeConfig> = {
 };
 
 const IMAGES = {
-  avatar: "/src/assets/images/agvaan_avatar_realistic_1783057311559.jpg",
-  basketball: "/src/assets/images/basketball_court_realistic_1783057238433.jpg",
-  onePiece: "/src/assets/images/one_piece_realistic_1783057210470.jpg",
-  gamerCockpit: "/src/assets/images/gamer_setup_realistic_1783057249864.jpg",
-  btsConcert: "/src/assets/images/bts_concert_realistic_1783057226817.jpg",
+  avatar: "/assets/images/agvaan_avatar_realistic_1783057311559.jpg",
+  basketball: "/assets/images/basketball_court_realistic_1783057238433.jpg",
+  onePiece: "/assets/images/one_piece_realistic_1783057210470.jpg",
+  gamerCockpit: "/assets/images/gamer_setup_realistic_1783057249864.jpg",
+  btsConcert: "/assets/images/bts_concert_realistic_1783057226817.jpg",
 };
 
 // Initial templates for guestbook entries

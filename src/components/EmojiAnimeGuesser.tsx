@@ -303,7 +303,20 @@ export function EmojiAnimeGuesser({ lang, soundEnabled = true }: Props) {
       }));
       setLeaderboard(list);
     } catch (error) {
-      console.error("Error fetching leaderboard:", error);
+      console.warn("Error fetching online leaderboard, falling back to local storage:", error);
+      try {
+        const localScoresRaw = localStorage.getItem("orbis_game_scores");
+        if (localScoresRaw) {
+          const localScores = JSON.parse(localScoresRaw);
+          const sorted = localScores.sort((a: any, b: any) => b.score - a.score).slice(0, 10);
+          setLeaderboard(sorted);
+        } else {
+          setLeaderboard([]);
+        }
+      } catch (localErr) {
+        console.error("Failed to read local storage scores:", localErr);
+        setLeaderboard([]);
+      }
     } finally {
       setLoadingLeaderboard(false);
     }
@@ -312,28 +325,45 @@ export function EmojiAnimeGuesser({ lang, soundEnabled = true }: Props) {
   const handleSaveScore = async () => {
     if (!playerName.trim()) return;
     setIsSubmitting(true);
+    const newScoreObj = {
+      playerName: playerName.trim(),
+      score: score,
+      correctCount: correctCount,
+      totalQuestions: currentQuestions.length,
+      mode: gameMode,
+      answers: sessionAnswers.map(ans => ({
+        questionId: ans.questionId,
+        answerText: ans.answerText,
+        correctAnswer: ans.correctAnswer,
+        isCorrect: ans.isCorrect
+      })),
+      timestamp: new Date().toISOString()
+    };
+
     try {
       const scoresCol = collection(db, "scores");
-      await addDoc(scoresCol, {
-        playerName: playerName.trim(),
-        score: score,
-        correctCount: correctCount,
-        totalQuestions: currentQuestions.length,
-        mode: gameMode,
-        answers: sessionAnswers.map(ans => ({
-          questionId: ans.questionId,
-          answerText: ans.answerText,
-          correctAnswer: ans.correctAnswer,
-          isCorrect: ans.isCorrect
-        })),
-        timestamp: new Date().toISOString()
-      });
+      await addDoc(scoresCol, newScoreObj);
       setIsSubmitted(true);
       if (soundEnabled) sound.playLevelUp();
       fetchLeaderboard();
       setGameMode("leaderboard");
     } catch (err) {
-      console.error("Failed to save score:", err);
+      console.warn("Failed to save score online, saving to local storage instead:", err);
+      try {
+        const localScoresRaw = localStorage.getItem("orbis_game_scores") || "[]";
+        const localScores = JSON.parse(localScoresRaw);
+        localScores.push({ id: `local_${Date.now()}`, ...newScoreObj });
+        localStorage.setItem("orbis_game_scores", JSON.stringify(localScores));
+        
+        setIsSubmitted(true);
+        if (soundEnabled) sound.playLevelUp();
+        
+        const sorted = localScores.sort((a: any, b: any) => b.score - a.score).slice(0, 10);
+        setLeaderboard(sorted);
+        setGameMode("leaderboard");
+      } catch (localErr) {
+        console.error("Failed to save score locally:", localErr);
+      }
     } finally {
       setIsSubmitting(false);
     }

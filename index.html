@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orbis.Nft - Beyond Earth and its familiar boundaries</title>
+    <script>
+      // Suppress benign WebSocket connection errors that occur due to the sandboxed dev server
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event.reason) {
+          const msg = (event.reason.message || String(event.reason)).toLowerCase();
+          if (msg.includes('websocket') || msg.includes('web socket')) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+        }
+      }, true);
+
+      window.addEventListener('error', function(event) {
+        const msg = (event.message || '').toLowerCase();
+        if (msg.includes('websocket') || msg.includes('web socket')) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }, true);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Condiment&display=swap" rel="stylesheet" />
