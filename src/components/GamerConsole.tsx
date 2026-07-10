@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Play, Trophy, Crosshair, Cpu, Check, Zap } from "lucide-react";
 import { sound } from "../utils/audio";
 import { GameDetails } from "../types";
+import { Roblox2D } from "./Roblox2D";
 
 const GAMES_DATA: Record<string, GameDetails> = {
   CS2: {
@@ -199,112 +200,125 @@ export function GamerConsole({ lang }: Props) {
         <div className="lg:col-span-8 relative">
           <AnimatePresence mode="wait">
             {!isAimActive ? (
-              <motion.div
-                key={selectedKey}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="liquid-glass rounded-[32px] p-6 sm:p-8 border border-white/10 flex flex-col justify-between relative min-h-[440px] h-full"
-              >
-                {/* Graphic absolute background texture */}
-                <div 
-                  className="absolute inset-0 opacity-5 pointer-events-none"
-                  style={{
-                    backgroundImage: `radial-gradient(circle, var(--color-neon) 1px, transparent 1px)`,
-                    backgroundSize: "20px 20px"
-                  }}
-                />
-
-                <div className="relative z-10 w-full">
-                  {/* Top line with title and rank */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-5">
-                    <div>
-                      <span className="font-mono text-[10px] text-neon uppercase tracking-[0.25em] font-bold block mb-1">
-                        {selectedGame.genre}
-                      </span>
-                      <h3 className="font-grotesk text-2xl sm:text-3xl text-cream uppercase tracking-wide">
-                        {selectedGame.name}
-                      </h3>
-                    </div>
-                    
-                    <div className="text-left sm:text-right">
-                      <span className="font-mono text-[9px] text-cream/40 uppercase block">RANK IN STATIONS:</span>
-                      <span className="font-serif italic font-extrabold text-neon uppercase tracking-wide text-sm sm:text-base">
-                        👑 {selectedGame.rank}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Character card */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
-                    <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01]">
-                      <span className="font-mono text-[9px] text-cream/40 uppercase block mb-1">
-                        {lang === "mn" ? "ОНЦЛОХ ДҮР // АВАТАР:" : "SIGNATURE CHARACTER:"}
-                      </span>
-                      <div className="flex items-center gap-2 text-cream font-bold text-sm sm:text-base uppercase font-mono tracking-wider">
-                        <Zap className="w-4 h-4 text-neon animate-pulse shrink-0" />
-                        <span>{selectedGame.favChar}</span>
-                      </div>
-                    </div>
-
-                    <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] flex items-center justify-between">
-                      <div>
-                        <span className="font-mono text-[9px] text-cream/40 uppercase block mb-1">RIG ALIGNMENT:</span>
-                        <span className="text-xs uppercase text-cream/80 font-bold">SECURE CHANNEL STATUS</span>
-                      </div>
-                      <span className="w-2 h-2 rounded-full bg-neon animate-ping" />
-                    </div>
-                  </div>
-
-                  {/* Skills sliders */}
-                  <div className="my-6 flex flex-col gap-3">
-                    <span className="font-mono text-[10px] text-cream/50 uppercase tracking-widest block">
-                      {lang === "mn" ? "ТОГЛОГЧИЙН ЧАДВАРЫН УРСГАЛ" : "PRO PERFORMANCE METRICS"}
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {Object.entries(selectedGame.stats).map(([statName, val]) => (
-                        <div key={statName} className="flex flex-col gap-1">
-                          <div className="flex justify-between text-[10px] text-cream/80 uppercase">
-                            <span>{statName}</span>
-                            <span className="font-bold text-neon">{val}%</span>
-                          </div>
-                          <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${val}%` }}
-                              transition={{ duration: 0.8, delay: 0.1 }}
-                              className="h-full bg-neon rounded-full"
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <p className="font-mono text-xs sm:text-sm text-cream/80 leading-relaxed uppercase tracking-wide border-t border-white/5 pt-5 mb-4">
-                    {lang === "mn" ? selectedGame.mnDesc : selectedGame.enDesc}
-                  </p>
-                </div>
-
-                {/* Sub-bar with Mint action */}
-                <div className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-white/5 text-[10px] text-cream/50 mt-4">
-                  <span>ORBIS VERIFIED AGVAAN-STATION-I86 LOCK</span>
-                  <button
-                    onClick={() => {
-                      sound.playJump();
-                      alert(
-                        lang === "mn"
-                          ? `Амжилттай! Та ${selectedGame.name}-ийн Agvaan-ий хүндэт гишүүн болж урилга авлаа.`
-                          : `Verified! You've unlocked Agvaan's server pass for ${selectedGame.name}.`
-                      );
+              selectedKey === "ROBLOX" ? (
+                <motion.div
+                  key="roblox-direct"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-full"
+                >
+                  <Roblox2D lang={lang} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={selectedKey}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.3 }}
+                  className="liquid-glass rounded-[32px] p-6 sm:p-8 border border-white/10 flex flex-col justify-between relative min-h-[440px] h-full"
+                >
+                  {/* Graphic absolute background texture */}
+                  <div 
+                    className="absolute inset-0 opacity-5 pointer-events-none"
+                    style={{
+                      backgroundImage: `radial-gradient(circle, var(--color-neon) 1px, transparent 1px)`,
+                      backgroundSize: "20px 20px"
                     }}
-                    className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-neon hover:text-space-bg border border-white/10 hover:border-neon transition-all flex items-center gap-1.5 cursor-pointer font-bold uppercase"
-                  >
-                    <span>{lang === "mn" ? "ВИДЖЕТ ОНЦЛОХ" : "CLAIM SPECIAL PASS"}</span>
-                  </button>
-                </div>
-              </motion.div>
+                  />
+
+                  <div className="relative z-10 w-full">
+                    {/* Top line with title and rank */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5 mb-5">
+                      <div>
+                        <span className="font-mono text-[10px] text-neon uppercase tracking-[0.25em] font-bold block mb-1">
+                          {selectedGame.genre}
+                        </span>
+                        <h3 className="font-grotesk text-2xl sm:text-3xl text-cream uppercase tracking-wide">
+                          {selectedGame.name}
+                        </h3>
+                      </div>
+                      
+                      <div className="text-left sm:text-right">
+                        <span className="font-mono text-[9px] text-cream/40 uppercase block">RANK IN STATIONS:</span>
+                        <span className="font-serif italic font-extrabold text-neon uppercase tracking-wide text-sm sm:text-base">
+                          👑 {selectedGame.rank}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Character card */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
+                      <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01]">
+                        <span className="font-mono text-[9px] text-cream/40 uppercase block mb-1">
+                          {lang === "mn" ? "ОНЦЛОХ ДҮР // АВАТАР:" : "SIGNATURE CHARACTER:"}
+                        </span>
+                        <div className="flex items-center gap-2 text-cream font-bold text-sm sm:text-base uppercase font-mono tracking-wider">
+                          <Zap className="w-4 h-4 text-neon animate-pulse shrink-0" />
+                          <span>{selectedGame.favChar}</span>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-xl border border-white/5 bg-white/[0.01] flex items-center justify-between">
+                        <div>
+                          <span className="font-mono text-[9px] text-cream/40 uppercase block mb-1">RIG ALIGNMENT:</span>
+                          <span className="text-xs uppercase text-cream/80 font-bold">SECURE CHANNEL STATUS</span>
+                        </div>
+                        <span className="w-2 h-2 rounded-full bg-neon animate-ping" />
+                      </div>
+                    </div>
+
+                    {/* Skills sliders */}
+                    <div className="my-6 flex flex-col gap-3">
+                      <span className="font-mono text-[10px] text-[#6FFF00] uppercase tracking-widest block font-bold">
+                        {lang === "mn" ? "ТОГЛОГЧИЙН ЧАДВАРЫН УРСГАЛ" : "PRO PERFORMANCE METRICS"}
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {Object.entries(selectedGame.stats).map(([statName, val]) => (
+                          <div key={statName} className="flex flex-col gap-1">
+                            <div className="flex justify-between text-[10px] text-cream/80 uppercase">
+                              <span>{statName}</span>
+                              <span className="font-bold text-neon">{val}%</span>
+                            </div>
+                            <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${val}%` }}
+                                transition={{ duration: 0.8, delay: 0.1 }}
+                                className="h-full bg-neon rounded-full"
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <p className="font-mono text-xs sm:text-sm text-cream/80 leading-relaxed uppercase tracking-wide border-t border-white/5 pt-5 mb-4">
+                      {lang === "mn" ? selectedGame.mnDesc : selectedGame.enDesc}
+                    </p>
+                  </div>
+
+                  {/* Sub-bar with Mint action */}
+                  <div className="relative z-10 flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-white/5 text-[10px] text-cream/50 mt-4">
+                    <span>ORBIS VERIFIED AGVAAN-STATION-I86 LOCK</span>
+                    <button
+                      onClick={() => {
+                        sound.playJump();
+                        alert(
+                          lang === "mn"
+                            ? `Амжилттай! Та ${selectedGame.name}-ийн Agvaan-ий хүндэт гишүүн болж урилга авлаа.`
+                            : `Verified! You've unlocked Agvaan's server pass for ${selectedGame.name}.`
+                        );
+                      }}
+                      className="px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-neon hover:text-space-bg border border-white/10 hover:border-neon transition-all flex items-center gap-1.5 cursor-pointer font-bold uppercase"
+                    >
+                      <span>{lang === "mn" ? "ВИДЖЕТ ОНЦЛОХ" : "CLAIM SPECIAL PASS"}</span>
+                    </button>
+                  </div>
+                </motion.div>
+              )
             ) : (
               <motion.div
                 key="aim-trainer"

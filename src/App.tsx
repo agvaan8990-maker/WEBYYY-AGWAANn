@@ -25,7 +25,8 @@ import {
   Laptop, 
   Compass, 
   UserPlus, 
-  Share2 
+  Share2,
+  Keyboard
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { sound } from "./utils/audio";
@@ -522,9 +523,27 @@ export default function App() {
               { id: "media", label: lang === "mn" ? "МУЗЫК & КИНО" : "SPACE CINEMA", icon: Tv },
               { id: "idol", label: lang === "mn" ? "🤖 ШҮТЭЭН" : "🤖 MY IDOL", icon: Award },
               { id: "school", label: lang === "mn" ? "ИРЭЭДҮЙ-86" : "STATION I-86", icon: BookOpen },
+              { id: "typeracer", label: "⌨️ Typeracer", icon: Keyboard, isExternal: true, url: "https://fast-type-khaki.vercel.app/" },
             ].map((tab) => {
               const isActive = activeTab === tab.id;
               const TabIcon = tab.icon;
+              if (tab.isExternal) {
+                return (
+                  <a
+                    key={tab.id}
+                    href={tab.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      if (soundEnabled) sound.playBeep();
+                    }}
+                    className="flex-1 min-w-[120px] py-3 px-3 rounded-xl font-mono text-xs font-bold uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer text-white/55 hover:text-white/90 hover:bg-white/[0.03] border border-transparent hover:border-white/5"
+                  >
+                    <TabIcon className="w-3.5 h-3.5 text-[#6FFF00]" />
+                    <span>{tab.label}</span>
+                  </a>
+                );
+              }
               return (
                 <button
                   key={tab.id}
